@@ -20,16 +20,17 @@ def demo_info():
     ]
 
     # 测试用例
+    order_id = 'DEMO' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     params = {
         'inputCharset'     : '1',
-        'bgUrl'            : 'http://codeb2cc.com/callBack?orderId=DEMO901234',
+        'bgUrl'            : 'http://demo.com/callBack?orderId=%s' % order_id,
         'version'          : 'v2.0',
         'language'         : '1',
         'signType'         : '4',
         'payerName'        : 'San Zhang',
         'payeeContactType' : '1',
         'payeeContact'     : '1971412292@qq.com',
-        'orderId'          : 'DEMO' + datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
+        'orderId'          : order_id,
         'orderAmount'      : '2000',
         'payeeAmount'      : '1500',
         'orderTime'        : datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
@@ -40,6 +41,8 @@ def demo_info():
         'sharingData'      : '1^843004510@qq.com^500^0^test',
         'pid'              : '10012138843',
     }
+
+    print '  Order Id: %s' % params['orderId']
 
     # 签名字符串输入, 参数顺序需要和接口文档中定义的顺序一致
     # IMPORTANT: 参数值不能进行转义, 空值参数不加入签名字符串
@@ -103,6 +106,36 @@ def demo_callback():
     OpenSSL.crypto.verify(certificate, base64.decodestring(params['signMsg']), sign_str, 'sha1')
 
 
+def demo_query():
+    API_URL = 'https://sandbox.99bill.com/msgateway/recvMerchantQueryAction.htm'
+    API_PARAM = [
+        'version', 'signType', 'queryType', 'queryMode', 'orderId', 'pid',
+    ]
+
+
+    params = {
+        'version'   : 'v2.0',
+        'signType'  : '4',
+        'queryType' : '0',
+        'queryMode' : '1',
+        'pid'       : '10012138843',
+    }
+    print '  Input Query Order ID:',
+    params['orderId'] = raw_input()
+
+    sign_str = '&'.join('='.join(kv) for kv in sorted(
+            params.iteritems(),
+            lambda x, y: cmp(API_PARAM.index(x), API_PARAM.index(y)),
+            lambda x: x[0],
+        ))
+
+    with contextlib.closing(open('demo.pem')) as f:
+        private_key = OpenSSL.crypto.load_privatekey(OpenSSL.crypto.FILETYPE_PEM, f.read())
+    params['signMsg'] = base64.encodestring(OpenSSL.crypto.sign(private_key, sign_str, 'sha1'))
+
+    print '  Request URL: %s?%s' % (API_URL, urllib.urlencode(params))
+
+
 def demo_refund():
     API_URL = 'https://sandbox.99bill.com/msgateway/recvMerchantRefundAction.htm'
     API_PARAM = [
@@ -143,6 +176,9 @@ if __name__ == '__main__':
 
     print '>>> 分账网关收款回调'
     demo_callback()
+
+    print '>>> 分账网关商户查询接口'
+    demo_query()
 
     print '>>> 分账网关退款接口'
     demo_refund()
