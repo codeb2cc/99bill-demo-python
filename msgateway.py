@@ -30,7 +30,7 @@ def demo_info():
         'orderId'          : 'DEMO901234',
         'orderAmount'      : '2000',
         'payeeAmount'      : '1500',
-        'orderTime'        : datetime.datetime.now().strftime('%Y%m%d%H%i%s'),
+        'orderTime'        : datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
         'productName'      : '苹果',
         'productNum'       : '1',
         'payType'          : '00',
@@ -70,7 +70,7 @@ def demo_refund():
         'pid'                        : '10012138843',
         'seqId'                      : 'RF901234',
         'returnAllAmou'              : '600',
-        'returnTime'                 : datetime.datetime.now().strftime('%Y%m%d%H%i%s'),
+        'returnTime'                 : datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
         'returnDetail'               : '1^843004510@qq.com^100|1^1971412292@qq.com^500^1',
         'shareRefundFeeFlag'         : '0',
     }
