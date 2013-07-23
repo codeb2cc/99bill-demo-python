@@ -170,6 +170,37 @@ def demo_refund():
     print '  Request URL: %s?%s' % (API_URL, urllib.urlencode(params))
 
 
+def demo_sharing():
+    API_URL = 'https://sandbox.99bill.com/msgateway/recvMerchantSharingAction.htm'
+    API_PARAM = [
+        'inputCharset', 'version', 'signType', 'orderId', 'sharingTime', 'pid', 'sharingInfo',
+    ]
+
+    params = {
+        'inputCharset' : '1',
+        'version'      : 'v2.0',
+        'signType'     : '4',
+        'sharingTime'  : datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
+        'pid'          : '10012138843',
+        'sharingInfo'  : '843004510@qq.com',
+    }
+
+    print '  Input Query Order ID:',
+    params['orderId'] = raw_input()
+
+    sign_str = '&'.join('='.join(kv) for kv in sorted(
+            params.iteritems(),
+            lambda x, y: cmp(API_PARAM.index(x), API_PARAM.index(y)),
+            lambda x: x[0],
+        ))
+
+    with contextlib.closing(open('demo.pem')) as f:
+        private_key = OpenSSL.crypto.load_privatekey(OpenSSL.crypto.FILETYPE_PEM, f.read())
+    params['signMsg'] = base64.encodestring(OpenSSL.crypto.sign(private_key, sign_str, 'sha1'))
+
+    print '  Request URL: %s?%s' % (API_URL, urllib.urlencode(params))
+
+
 if __name__ == '__main__':
     print '>>> 分账网关收款接口'
     demo_info()
@@ -183,4 +214,6 @@ if __name__ == '__main__':
     print '>>> 分账网关退款接口'
     demo_refund()
 
+    print '>>> 分账网关异步分账接口'
+    demo_sharing()
 
