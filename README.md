@@ -4,6 +4,7 @@
 99bill(快钱) API demo for Python
 
 
+* `batch_pay.py` - 付款网关接口例子
 * `msgateway.py` - 分账支付接口例子
 
 
