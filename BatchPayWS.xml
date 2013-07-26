@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.99bill.com/apipay/services/BatchPayWS" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.99bill.com/apipay/services/BatchPayWS" xmlns:intf="http://www.99bill.com/apipay/services/BatchPayWS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://complatible.dto.domain.seashell.bill99.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://complatible.dto.domain.seashell.bill99.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.99bill.com/apipay/services/BatchPayWS"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BankRequestBean">
+    <sequence>
+     <element name="amount" type="xsd:double"/>
+     <element name="bankCardNumber" nillable="true" type="soapenc:string"/>
+     <element name="bankName" nillable="true" type="soapenc:string"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="kaihuhang" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="province_city" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="BankResponseBean">
+    <sequence>
+     <element name="amount" type="xsd:double"/>
+     <element name="bankCardNumber" nillable="true" type="soapenc:string"/>
+     <element name="bankName" nillable="true" type="soapenc:string"/>
+     <element name="creditCharge" type="xsd:double"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="dealCharge" type="xsd:double"/>
+     <element name="dealId" nillable="true" type="soapenc:string"/>
+     <element name="debitCharge" type="xsd:double"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="failureCause" nillable="true" type="soapenc:string"/>
+     <element name="kaihuhang" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="province_city" nillable="true" type="soapenc:string"/>
+     <element name="resultFlag" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="SimpleRequestBean">
+    <sequence>
+     <element name="amount" type="xsd:double"/>
+     <element name="correctName" nillable="true" type="soapenc:string"/>
+     <element name="creditContact" nillable="true" type="soapenc:string"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="currencyCode" nillable="true" type="soapenc:string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="tempAccount" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SimpleResponseBean">
+    <sequence>
+     <element name="amount" type="xsd:double"/>
+     <element name="correctName" nillable="true" type="soapenc:string"/>
+     <element name="creditAccount" nillable="true" type="soapenc:string"/>
+     <element name="creditCharge" type="xsd:double"/>
+     <element name="creditContact" nillable="true" type="soapenc:string"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="currencyCode" nillable="true" type="soapenc:string"/>
+     <element name="dealCharge" type="xsd:double"/>
+     <element name="dealId" nillable="true" type="soapenc:string"/>
+     <element name="debitCharge" type="xsd:double"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="emailId" nillable="true" type="soapenc:string"/>
+     <element name="failureCause" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="mobile" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="resultFlag" type="xsd:boolean"/>
+     <element name="tempAccount" nillable="true" type="soapenc:string"/>
+     <element name="unregister" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="PostRequestBean">
+    <sequence>
+     <element name="address" nillable="true" type="soapenc:string"/>
+     <element name="amount" type="xsd:double"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="postcode" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PostResponseBean">
+    <sequence>
+     <element name="address" nillable="true" type="soapenc:string"/>
+     <element name="amount" type="xsd:double"/>
+     <element name="creditCharge" type="xsd:double"/>
+     <element name="creditName" nillable="true" type="soapenc:string"/>
+     <element name="dealCharge" type="xsd:double"/>
+     <element name="dealId" nillable="true" type="soapenc:string"/>
+     <element name="debitCharge" type="xsd:double"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="failureCause" nillable="true" type="soapenc:string"/>
+     <element name="mac" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="postcode" nillable="true" type="soapenc:string"/>
+     <element name="resultFlag" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="QueryRequestBean">
+    <sequence>
+     <element name="dealBeginDate" nillable="true" type="soapenc:string"/>
+     <element name="dealEndDate" nillable="true" type="soapenc:string"/>
+     <element name="dealId" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="queryType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="QueryResponseBean">
+    <sequence>
+     <element name="amount" type="xsd:double"/>
+     <element name="dealBeginDate" nillable="true" type="soapenc:string"/>
+     <element name="dealEndDate" nillable="true" type="soapenc:string"/>
+     <element name="dealFee" type="xsd:double"/>
+     <element name="dealId" nillable="true" type="soapenc:string"/>
+     <element name="dealStatus" nillable="true" type="soapenc:string"/>
+     <element name="failureCause" nillable="true" type="soapenc:string"/>
+     <element name="orderId" nillable="true" type="soapenc:string"/>
+     <element name="queryType" nillable="true" type="soapenc:string"/>
+     <element name="resultFlag" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://www.99bill.com/apipay/services/BatchPayWS" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://complatible.dto.domain.seashell.bill99.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns1_BankRequestBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:BankRequestBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_BankResponseBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:BankResponseBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_SimpleRequestBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:SimpleRequestBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_SimpleResponseBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:SimpleResponseBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_PostRequestBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PostRequestBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_PostResponseBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PostResponseBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_QueryResponseBean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:QueryResponseBean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="simplePayRequest">
+
+      <wsdl:part name="input" type="impl:ArrayOf_tns1_SimpleRequestBean">
+
+      </wsdl:part>
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ip" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryDealResponse">
+
+      <wsdl:part name="queryDealReturn" type="impl:ArrayOf_tns1_QueryResponseBean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryDealRequest">
+
+      <wsdl:part name="input" type="tns1:QueryRequestBean">
+
+      </wsdl:part>
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ip" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postPayResponse">
+
+      <wsdl:part name="postPayReturn" type="impl:ArrayOf_tns1_PostResponseBean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postPayRequest">
+
+      <wsdl:part name="input" type="impl:ArrayOf_tns1_PostRequestBean">
+
+      </wsdl:part>
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ip" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bankPayResponse">
+
+      <wsdl:part name="bankPayReturn" type="impl:ArrayOf_tns1_BankResponseBean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="simplePayResponse">
+
+      <wsdl:part name="simplePayReturn" type="impl:ArrayOf_tns1_SimpleResponseBean">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bankPayRequest">
+
+      <wsdl:part name="input" type="impl:ArrayOf_tns1_BankRequestBean">
+
+      </wsdl:part>
+
+      <wsdl:part name="username" type="soapenc:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="ip" type="soapenc:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BatchPay">
+
+      <wsdl:operation name="bankPay" parameterOrder="input username ip">
+
+         <wsdl:input message="impl:bankPayRequest" name="bankPayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:bankPayResponse" name="bankPayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="simplePay" parameterOrder="input username ip">
+
+         <wsdl:input message="impl:simplePayRequest" name="simplePayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:simplePayResponse" name="simplePayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postPay" parameterOrder="input username ip">
+
+         <wsdl:input message="impl:postPayRequest" name="postPayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:postPayResponse" name="postPayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryDeal" parameterOrder="input username ip">
+
+         <wsdl:input message="impl:queryDealRequest" name="queryDealRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:queryDealResponse" name="queryDealResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BatchPayWSSoapBinding" type="impl:BatchPay">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="bankPay">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bankPayRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://compatible.api.seashell.bill99.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bankPayResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.99bill.com/apipay/services/BatchPayWS" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="simplePay">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="simplePayRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://compatible.api.seashell.bill99.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="simplePayResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.99bill.com/apipay/services/BatchPayWS" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postPay">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="postPayRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://compatible.api.seashell.bill99.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="postPayResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.99bill.com/apipay/services/BatchPayWS" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryDeal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryDealRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://compatible.api.seashell.bill99.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryDealResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.99bill.com/apipay/services/BatchPayWS" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BatchPayService">
+
+      <wsdl:port binding="impl:BatchPayWSSoapBinding" name="BatchPayWS">
+
+         <wsdlsoap:address location="http://www.99bill.com/apipay/services/BatchPayWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
