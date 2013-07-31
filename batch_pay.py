@@ -90,13 +90,13 @@ if __name__ == '__main__':
     rb = simple_pay(client)
 
     print 'Simple Pay Response'
-    print '  Order ID: %s' % response_bean[0].orderId
-    print '  Deal ID: %s' % response_bean[0].dealId
-    print '  Status: %s' % response_bean[0].resultFlag
+    print '  Order ID: %s' % rb.orderId
+    print '  Deal ID: %s' % rb.dealId
+    print '  Status: %s' % rb.resultFlag
 
     rb = bank_pay(client)
     print 'Bank Pay Response'
-    print '  Order ID: %s' % response_bean[0].orderId
-    print '  Deal ID: %s' % response_bean[0].dealId
-    print '  Status: %s' % response_bean[0].resultFlag
+    print '  Order ID: %s' % rb.orderId
+    print '  Deal ID: %s' % rb.dealId
+    print '  Status: %s' % rb.resultFlag
 
