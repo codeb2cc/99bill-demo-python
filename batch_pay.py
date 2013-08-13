@@ -30,7 +30,7 @@ def simple_pay(client):
     m.update(request_bean.orderId.get())
     m.update(merchant_key)
 
-    request_bean.mac = m.hexdigest()
+    request_bean.mac = m.hexdigest().upper()
 
     response_bean = client.service.simplePay([request_bean, ], merchant_id, merchant_ip)
 
@@ -59,7 +59,7 @@ def bank_pay(client):
     m.update(request_bean.orderId.get())
     m.update(merchant_key)
 
-    request_bean.mac = m.hexdigest()
+    request_bean.mac = m.hexdigest().upper()
 
     response_bean = client.service.bankPay([request_bean, ], merchant_id, merchant_ip)
 
@@ -78,7 +78,7 @@ def deal_query(client):
     merchant_id = '10012138842'
     merchant_ip = '222.190.107.178'
 
-    response_bean = client.service.queryDeal([request_bean, ], merchant_id, merchant_ip)
+    response_bean = client.service.queryDeal(request_bean, merchant_id, merchant_ip)
 
     return response_bean[0]
 
