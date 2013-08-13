@@ -112,7 +112,6 @@ def demo_query():
         'version', 'signType', 'queryType', 'queryMode', 'orderId', 'pid',
     ]
 
-
     params = {
         'version'   : 'v2.0',
         'signType'  : '4',
@@ -139,7 +138,7 @@ def demo_query():
 def demo_refund():
     API_URL = 'https://sandbox.99bill.com/msgateway/recvMerchantRefundAction.htm'
     API_PARAM = [
-        'inputCharset', 'version', 'signType', 'orderId', 'pid', 'seqId', 'returnAllAmou',
+        'inputCharset', 'version', 'signType', 'orderId', 'pid', 'seqId', 'returnAllAmount',
         'nt', 'getTolerance', 'returnTime', 'ext1', 'ext2', 'returnDetail', 'returnSharingDetail',
         'assignAcct', 'refundFlag', 'shareRefundFeeFlag',
     ]
@@ -148,14 +147,16 @@ def demo_refund():
         'inputCharset'               : '1',
         'version'                    : 'v2.0',
         'signType'                   : '4',
-        'orderId'                    : 'DEMO' + datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
         'pid'                        : '10012138843',
         'seqId'                      : 'S' + datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
-        'returnAllAmou'              : '600',
+        'returnAllAmount'            : '600',
         'returnTime'                 : datetime.datetime.now().strftime('%Y%m%d%H%M%S'),
         'returnDetail'               : '1^843004510@qq.com^100|1^1971412292@qq.com^500^1',
         'shareRefundFeeFlag'         : '0',
     }
+
+    print '  Input Refund Order ID:',
+    params['orderId'] = raw_input()
 
     sign_str = '&'.join('='.join(kv) for kv in sorted(
             params.iteritems(),
